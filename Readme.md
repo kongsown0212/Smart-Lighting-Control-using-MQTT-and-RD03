@@ -122,7 +122,7 @@ martlight-wb2-mqtt/
 ├── include  
 │   ├── mqtt_demo.h  
 │   ├── wifi_demo.h  
-├── main.c              
+├── main.c                
 ├── mqtt_demo.c  
 ├── wifi_demo.c       
 ├── Makefile              
