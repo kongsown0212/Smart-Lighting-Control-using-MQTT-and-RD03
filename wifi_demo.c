@@ -17,21 +17,21 @@ void wifi_sta_connect(char* ssid, char* password)
 {
     wifi_interface_t wifi_interface;
 
-    wifi_interface = wifi_mgmr_sta_enable(); //bật Wi-Fi Station (thiết bị làm client).
-    wifi_mgmr_sta_connect(wifi_interface, ssid, password, NULL, NULL, 0, 0); //kết nối vào AP với SSID/PWD.
+    wifi_interface = wifi_mgmr_sta_enable(); 
+    wifi_mgmr_sta_connect(wifi_interface, ssid, password, NULL, NULL, 0, 0); 
 }
 
 void event_cb_wifi_event(input_event_t* event, void* private_data)
 {
     switch (event->code)
     {
-        case CODE_WIFI_ON_INIT_DONE: //Wi-Fi driver đã init xong
+        case CODE_WIFI_ON_INIT_DONE: 
         {
             blog_info("[APP] [EVT] INIT DONE %lld", aos_now_ms());
             wifi_mgmr_start_background(&conf);
         }
         break;
-        case CODE_WIFI_ON_MGMR_DONE: //Wi-Fi quản lý (manager) đã sẵn sàng
+        case CODE_WIFI_ON_MGMR_DONE: 
         {
             blog_info("[APP] [EVT] MGMR DONE %lld", aos_now_ms());
             wifi_sta_connect(ROUTER_SSID, ROUTER_PWD);
@@ -57,7 +57,7 @@ void event_cb_wifi_event(input_event_t* event, void* private_data)
             blog_info("[APP] [EVT] Reconnect %lld", aos_now_ms());
         }
         break;
-        case CODE_WIFI_ON_CONNECTED://đã kết nối thành công tới AP.
+        case CODE_WIFI_ON_CONNECTED:
         {
             blog_info("[APP] [EVT] connected %lld", aos_now_ms());
         }
@@ -67,12 +67,12 @@ void event_cb_wifi_event(input_event_t* event, void* private_data)
             blog_info("[APP] [EVT] connected %lld", aos_now_ms());
         }
         break;
-        case CODE_WIFI_ON_GOT_IP://đã nhận được IP từ DHCP.
+        case CODE_WIFI_ON_GOT_IP:
         {
             blog_info("[APP] [EVT] GOT IP %lld", aos_now_ms());
             blog_info("[SYS] Memory left is %d Bytes", xPortGetFreeHeapSize());
             extern void mqtt_start(void);
-            mqtt_start(); //bắt đầu demo MQTT
+            mqtt_start(); 
         }
         break;
         case CODE_WIFI_ON_PROV_SSID:
@@ -107,8 +107,8 @@ void event_cb_wifi_event(input_event_t* event, void* private_data)
 
  void proc_main_entry(void* pvParameters)
 {
-    aos_register_event_filter(EV_WIFI, event_cb_wifi_event, NULL); //đăng ký callback sự kiện Wi-Fi
-    hal_wifi_start_firmware_task();  //khởi động task firmware Wi-Fi
-    aos_post_event(EV_WIFI, CODE_WIFI_ON_INIT_DONE, 0); //gửi sự kiện Wi-Fi driver đã init xong
+    aos_register_event_filter(EV_WIFI, event_cb_wifi_event, NULL); 
+    hal_wifi_start_firmware_task(); 
+    aos_post_event(EV_WIFI, CODE_WIFI_ON_INIT_DONE, 0); 
     vTaskDelete(NULL);
 }

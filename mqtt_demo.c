@@ -251,7 +251,7 @@ void TaskUart(void *param)
 }
 
 
-static void log_error_if_nonzero(const char *message, int error_code) // Ham log lỗi nếu error_code khác 0
+static void log_error_if_nonzero(const char *message, int error_code) 
 {
     if (error_code != 0) {
         blog_error("Last error %s: 0x%x", message, error_code);
@@ -324,11 +324,11 @@ void mqtt_start(void)
      
 
     axk_mqtt_client_config_t mqtt_cfg = {
-        .uri = "mqtt://mqtt.namismart.vn:1883", // tcp
+        .uri = "your-url", // tcp
         .event_handle = event_cb,
         .lwt_retain = 1,
-        .username = "namismart",
-        .password = "Q7bjvdqxCzXb7Cy",
+        .username = "your-username",
+        .password = "your-password",
         .keepalive = 25
     };
     
