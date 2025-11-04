@@ -2,17 +2,17 @@
 #include "blog.h"
 #include <wifi_mgmr_ext.h>
 
-static wifi_conf_t conf =
+
+#define ROUTER_SSID "Nami R&D"
+#define ROUTER_PWD "nami@2025"
+
+extern void TaskUart(void *param);
+
+wifi_conf_t conf =
 {
     .country_code = "CN",
 };
 
-void start_softap_mode(void) {
-    wifi_interface_t wifi_ap;
-    wifi_ap = wifi_mgmr_ap_enable();
-    wifi_mgmr_ap_start(wifi_ap, "WB2_Config_1234", 0, "12345678", 6); 
-    printf("SoftAP started, connect to SSID: WB2_Config_1234\n");
-}
 void wifi_sta_connect(char* ssid, char* password)
 {
     wifi_interface_t wifi_interface;
@@ -21,7 +21,7 @@ void wifi_sta_connect(char* ssid, char* password)
     wifi_mgmr_sta_connect(wifi_interface, ssid, password, NULL, NULL, 0, 0); //kết nối vào AP với SSID/PWD.
 }
 
-extern void event_cb_wifi_event(input_event_t* event, void* private_data)
+void event_cb_wifi_event(input_event_t* event, void* private_data)
 {
     switch (event->code)
     {
@@ -29,20 +29,12 @@ extern void event_cb_wifi_event(input_event_t* event, void* private_data)
         {
             blog_info("[APP] [EVT] INIT DONE %lld", aos_now_ms());
             wifi_mgmr_start_background(&conf);
-            blog_info("wifi_mgmr_start_background() called");
         }
         break;
         case CODE_WIFI_ON_MGMR_DONE: //Wi-Fi quản lý (manager) đã sẵn sàng
         {
             blog_info("[APP] [EVT] MGMR DONE %lld", aos_now_ms());
-            char ssid[64], pass[64];
-        if (config_get_wifi(ssid, pass, sizeof(ssid))) {
-            
-            wifi_sta_connect(ssid, pass);
-        } else {
-            start_softap_mode();
-            http_server_start(); // khởi động web server
-        }
+            wifi_sta_connect(ROUTER_SSID, ROUTER_PWD);
         }
         break;
         case CODE_WIFI_ON_SCAN_DONE:
@@ -113,18 +105,10 @@ extern void event_cb_wifi_event(input_event_t* event, void* private_data)
     }
 }
 
-
-
-
-extern void proc_main_entry(void* pvParameters)
+ void proc_main_entry(void* pvParameters)
 {
-
-
     aos_register_event_filter(EV_WIFI, event_cb_wifi_event, NULL); //đăng ký callback sự kiện Wi-Fi
-    blog_info("Starting hal_wifi_start_firmware_task()");
     hal_wifi_start_firmware_task();  //khởi động task firmware Wi-Fi
     aos_post_event(EV_WIFI, CODE_WIFI_ON_INIT_DONE, 0); //gửi sự kiện Wi-Fi driver đã init xong
-    blog_info("Posted CODE_WIFI_ON_INIT_DONE");
-     vTaskDelete(NULL);
+    vTaskDelete(NULL);
 }
-

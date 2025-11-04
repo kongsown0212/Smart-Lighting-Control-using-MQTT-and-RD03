@@ -10,8 +10,6 @@
 #include <hal_wifi.h>
 #include "mqtt_demo.h"
 #include "wifi_demo.h"
-#include "web_config.h"
-#include "config_store.h"
 
 void main()
 {   
