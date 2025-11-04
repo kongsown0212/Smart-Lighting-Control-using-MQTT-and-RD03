@@ -172,7 +172,7 @@ Extend for multi-room lighting network.
 ---
 
 👨‍💻 Author
-Son Truong.
+Son Truong  
 Embedded Systems & IoT Developer  
 📧 [truongcongsonbh@gmail.com]  
 🏷️ Project: Smart Lighting System using RD03_v2 and MQTT on Ai-Thinker WB2
