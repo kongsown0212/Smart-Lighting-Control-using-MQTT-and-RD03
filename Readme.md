@@ -116,7 +116,7 @@ FD FF 01 00 02 00 20 ...
 ---
 
 ## Project Structure
-```plaintext
+
 martlight-wb2-mqtt/  
 │  
 ├── include  
