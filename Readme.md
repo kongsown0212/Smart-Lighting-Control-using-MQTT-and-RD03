@@ -10,17 +10,23 @@ The system runs on **FreeRTOS**, enabling concurrent tasks for UART handling, MQ
 ---
 
 ## System Architecture
-+----------------------+         +----------------------+
-|   RD03_v2 Sensor     | ----->  |   Ai-Thinker WB2     |
-| (Motion Detection)   |         | (FreeRTOS + MQTT)    |
-+----------------------+         +----------------------+
-                                          |
-                                          | MQTT over Wi-Fi
-                                          v
-+----------------------+         +----------------------+
-|   MQTT Broker        | <-----> |  MQTT Dashboard/App  |
-| (Mosquitto Server)   |         | (MQTTX / Node-RED)   |
-+----------------------+         +----------------------+
++----------------------+       +----------------------+  
+|    RD03_v2 Sensor    | ----> |     Ai-Thinker WB2   |  
+|  (Motion Detection)  |       |  (FreeRTOS + MQTT)   |  
++----------------------+       +----------------------+  
+            |  
+            | MQTT over Wi-Fi  
+            v  
+       +----------------------+  
+       |     MQTT Broker      |  
+       |   (Mosquitto Server) |  
+       +----------------------+  
+            ^  
+            |  
+       +----------------------+  
+       |  MQTT Dashboard/App  |  
+       |   (MQTTX / Node-RED) |  
+       +----------------------+  
 
 
 
@@ -110,14 +116,14 @@ FD FF 01 00 02 00 20 ...
 ---
 
 ## Project Structure
-smartlight-wb2-mqtt/
-│
-├── main.c              # Main application (UART, MQTT, FreeRTOS)
-├── mqtt_demo.h         # MQTT declarations
-├── Makefile            # Build script
-├── bouffalo.mk         # SDK configuration file
-├── proj_config.mk      # Project-level settings
-└── README.md           # Documentation
+smartlight-wb2-mqtt/  
+│  
+├── main.c              # Main application (UART, MQTT, FreeRTOS)  
+├── mqtt_demo.h         # MQTT declarations  
+├── Makefile            # Build script  
+├── bouffalo.mk         # SDK configuration file  
+├── proj_config.mk      # Project-level settings  
+└── README.md           # Documentation  
 
 
 ---
@@ -134,15 +140,16 @@ MQTT, UART, and GPIO libraries
 ---
 
 ## Download SDK
-Please clone the official SDK from Ai-Thinker to build and flash the project:
+Please clone the official SDK from Ai-Thinker to build and flash the project:  
 
-GitHub Repository: Ai-Thinker-Open/Ai-Thinker-WB2
+GitHub Repository: [Ai-Thinker-Open/Ai-Thinker-WB2](https://github.com/Ai-Thinker-Open/Ai-Thinker-WB2)  
 
-Documentation: Ai-WB2-12F Kit Specification (PDF)
+Documentation: [Ai-WB2-12F Kit Specification (PDF)](https://docs.rs-online.com/f055/A700000010207959.pdf)  
 
-Reference Manual: Bouffalo Lab BL602/BL604 Reference Manual (PDF)
+Reference Manual: [Bouffalo Lab BL602/BL604 Reference Manual (PDF)](https://files.pine64.org/doc/datasheet/Pinenut/Bouffalo%20Lab%20BL602_Reference_Manual_en_1.1.pdf)  
 
-Sensor Protocol: RD-03_v2 UART Communication Protocol (PDF)
+Sensor Protocol: [RD-03_v2 UART Communication Protocol (PDF)](https://vdoc.ai-thinker.com/_media/rd-03_v2_serial_communication_en_1_.pdf)  
+
 
 
 ---
@@ -160,6 +167,6 @@ Extend for multi-room lighting network.
 
 👨‍💻 Author
 Son Truong.
-Embedded Systems & IoT Developer .
-📧 [truongcongsonbh@gmail.com].
-🏷️ Project: Smart Lighting System using RD03_v2 and MQTT on Ai-Thinker WB2.
+Embedded Systems & IoT Developer  
+📧 [truongcongsonbh@gmail.com]  
+🏷️ Project: Smart Lighting System using RD03_v2 and MQTT on Ai-Thinker WB2
