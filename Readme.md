@@ -116,18 +116,20 @@ FD FF 01 00 02 00 20 ...
 ---
 
 ## Project Structure
-smartlight-wb2-mqtt/  
+```plaintext
+martlight-wb2-mqtt/  
 │  
 ├── include  
-    ├── mqtt_demo.h  
-    ├── wifi_demo.h
+│   ├── mqtt_demo.h  
+│   ├── wifi_demo.h
 ├── main.c              
 ├── mqtt_demo.c  
 ├── wifi_demo.c       
 ├── Makefile              
 ├── bouffalo.mk          
 ├── proj_config.mk        
-└── README.md            
+└── README.md
+        
 
 
 ---
