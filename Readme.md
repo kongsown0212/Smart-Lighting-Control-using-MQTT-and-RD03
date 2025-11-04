@@ -118,12 +118,16 @@ FD FF 01 00 02 00 20 ...
 ## Project Structure
 smartlight-wb2-mqtt/  
 │  
-├── main.c              # Main application (UART, MQTT, FreeRTOS)  
-├── mqtt_demo.h         # MQTT declarations  
-├── Makefile            # Build script  
-├── bouffalo.mk         # SDK configuration file  
-├── proj_config.mk      # Project-level settings  
-└── README.md           # Documentation  
+├── include  
+    ├── mqtt_demo.h  
+    ├── wifi_demo.h
+├── main.c              
+├── mqtt_demo.c  
+├── wifi_demo.c       
+├── Makefile              
+├── bouffalo.mk          
+├── proj_config.mk        
+└── README.md            
 
 
 ---
