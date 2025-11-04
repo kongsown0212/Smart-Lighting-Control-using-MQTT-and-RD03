@@ -1,25 +1,27 @@
 # Smart Lighting System using RD03_v2 and MQTT on Ai-Thinker WB2
 
 ## Overview
-This project implements an **automatic lighting system** for **Smart Homes** using the **RD03_v2 radar motion sensor**, the **Ai-Thinker WB2 board** and the **MQTT protocol**.  
+This project implements an **automatic lighting system** for **Smart Homes** using the **RD03_v2 radar motion sensor**, the **Ai-Thinker WB2 board** and the **MQTT protocol**. 
+
 It provides **real-time motion detection**, **light control**, and **status feedback** over Wi-Fi via MQTT communication.
 
 The system runs on **FreeRTOS**, enabling concurrent tasks for UART handling, MQTT communication, and timer-based automation.
 
 ---
 
-## ⚙️ System Architecture
-+----------------------+ +----------------------+
-| RD03_v2 Sensor | -----> | Ai-Thinker WB2 |
-| (Motion Detection) | | (FreeRTOS + MQTT) |
-+----------------------+ +----------------------+
-|
-| MQTT over Wi-Fi
-v
-+----------------------+ +----------------------+
-| MQTT Broker | <-----> | MQTT Dashboard/App |
-| (Mosquitto Server) | | (MQTTX / Node-RED) |
-+----------------------+ +----------------------+
+## System Architecture
++----------------------+         +----------------------+
+|   RD03_v2 Sensor     | ----->  |   Ai-Thinker WB2     |
+| (Motion Detection)   |         | (FreeRTOS + MQTT)    |
++----------------------+         +----------------------+
+                                          |
+                                          | MQTT over Wi-Fi
+                                          v
++----------------------+         +----------------------+
+|   MQTT Broker        | <-----> |  MQTT Dashboard/App  |
+| (Mosquitto Server)   |         | (MQTTX / Node-RED)   |
++----------------------+         +----------------------+
+
 
 
 ---
@@ -108,15 +110,15 @@ FD FF 01 00 02 00 20 ...
 ---
 
 ## Project Structure
-
 smartlight-wb2-mqtt/
 │
-├── main.c                 # Main application (UART, MQTT, FreeRTOS)
-├── mqtt_demo.h            # MQTT declarations
-├── Makefile               # Build script
-├── bouffalo.mk            # SDK configuration file
-├── proj_config.mk         # Project-level settings
-└── README.md              # Documentation
+├── main.c              # Main application (UART, MQTT, FreeRTOS)
+├── mqtt_demo.h         # MQTT declarations
+├── Makefile            # Build script
+├── bouffalo.mk         # SDK configuration file
+├── proj_config.mk      # Project-level settings
+└── README.md           # Documentation
+
 
 ---
 
@@ -132,12 +134,15 @@ MQTT, UART, and GPIO libraries
 ---
 
 ## Download SDK
-Please clone the official SDK from Ai-Thinker:
+Please clone the official SDK from Ai-Thinker to build and flash the project:
 
- GitHub: Ai-Thinker-Open/Ai-Thinker-WB2
- Documentation: Ai-WB2-12F-Kit Specification : https://docs.rs-online.com/f055/A700000010207959.pdf
-                BL602/604 Reference Manual : https://files.pine64.org/doc/datasheet/Pinenut/Bouffalo%20Lab%20BL602_Reference_Manual_en_1.1.pdf
-                Rd-03 UART Communication Protocol : https://vdoc.ai-thinker.com/_media/rd-03_v2_serial_communication_en_1_.pdf
+GitHub Repository: Ai-Thinker-Open/Ai-Thinker-WB2
+
+Documentation: Ai-WB2-12F Kit Specification (PDF)
+
+Reference Manual: Bouffalo Lab BL602/BL604 Reference Manual (PDF)
+
+Sensor Protocol: RD-03_v2 UART Communication Protocol (PDF)
 
 
 ---
@@ -154,7 +159,7 @@ Extend for multi-room lighting network.
 ---
 
 👨‍💻 Author
-Son Truong 
-Embedded Systems & IoT Developer 
-📧 [truongcongsonbh@gmail.com]
-🏷️ Project: Smart Lighting System using RD03_v2 and MQTT on Ai-Thinker WB2
+Son Truong.
+Embedded Systems & IoT Developer .
+📧 [truongcongsonbh@gmail.com].
+🏷️ Project: Smart Lighting System using RD03_v2 and MQTT on Ai-Thinker WB2.
